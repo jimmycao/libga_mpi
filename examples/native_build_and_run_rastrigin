@@ -1,0 +1,14 @@
+#!/bin/bash
+echo ""
+echo "$(tput setaf 1)Building the rastrigin test problem...$(tput sgr0)"
+echo ""
+rm -rf ../build
+mkdir ../build && cd ../build
+cmake .. && make
+echo ""
+echo "$(tput setaf 1)Running the rastrigin test problem using mpi...$(tput sgr0)"
+time mpiexec -n 8 ./rastrigin
+echo ""
+echo "$(tput setaf 1)Result (variables, fitness)$(tput sgr0)"
+python ../py/fittest.py "rastrigin_*"
+echo ""

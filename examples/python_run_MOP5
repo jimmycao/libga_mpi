@@ -1,0 +1,14 @@
+#!/bin/bash
+echo ""
+echo "$(tput setaf 1)Running the Python MOP5 test problem using mpi...$(tput sgr0)"
+cd ../py/
+rm -rf test
+mkdir test && cd test
+time mpiexec -n 8 python -O ../MOP5.py
+echo ""
+echo "$(tput setaf 1)Post-processing...$(tput sgr0)"
+python ../merge_as_npz.py "MOP5_data_*" 3 test.npz
+python ../front.py test.npz test.npz
+echo "$(tput setaf 1)Displaying results (interactive)...$(tput sgr0)"
+python ../paretoplot3d.py test.npz
+echo ""

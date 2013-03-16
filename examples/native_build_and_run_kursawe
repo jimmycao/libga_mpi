@@ -1,0 +1,17 @@
+#!/bin/bash
+echo ""
+echo "$(tput setaf 1)Building the kursawe test problem...$(tput sgr0)"
+echo ""
+rm -rf ../build
+mkdir ../build && cd ../build
+cmake .. && make
+echo ""
+echo "$(tput setaf 1)Running the kursawe test problem using mpi...$(tput sgr0)"
+time mpiexec -n 8 ./kursawe
+echo ""
+echo "$(tput setaf 1)Post-processing...$(tput sgr0)"
+python ../py/merge_to_npz.py "kursawe_data_*" 2 test.npz
+python ../py/front.py test.npz test.npz
+echo "$(tput setaf 1)Displaying results (interactive)...$(tput sgr0)"
+python ../py/paretoplot.py test.npz
+echo ""

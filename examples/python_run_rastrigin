@@ -1,0 +1,11 @@
+#!/bin/bash
+echo ""
+echo "$(tput setaf 1)Running the Python rastrigin test problem using mpi...$(tput sgr0)"
+cd ../py/
+rm -rf test
+mkdir test && cd test
+time mpiexec -n 8 python -O ../rastrigin.py
+echo ""
+echo "$(tput setaf 1)Result (variables, fitness)$(tput sgr0)"
+python ../fittest.py "rastrigin_*"
+echo ""
