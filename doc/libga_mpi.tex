@@ -90,7 +90,12 @@ Both the single- and the multi-objective variants (C++ and Python libraries) can
 The C++ versions expect to deal with real-valued optimization problems only. This is simplifying the GA's implementation and also the communication over MPI. The Python versions are generic enough that the genome type is not important as long as it is array-like. The elements of the genome (i.e. the solution candidates) could be arrays, trees or anything else. However, libga only offers crossover operators for the typical real-valued case. You would have to supply your own custom operators for other genome types. Your custom solution type would have to be able to be ``pickled'' to be sent via MPI aswell. This is dependent on mpi4py's behavior. 
 
 \section{Obtaining the Source}
-Right now the source is distributed as a tar.gz file named ``libga\_mpi.tar.gz''. Extract it into a directory. 
+The source is hosted on github. Pull with
+\begin{lstlisting}[style=Bash]
+$  mkdir libga_mpi && cd libga_mpi
+$  git init
+$  git pull git://github.com/mawirth/libga_mpi.git
+\end{lstlisting}
 
 \section{Prerequisites}
 \begin{enumerate}
