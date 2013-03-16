@@ -139,10 +139,9 @@ public:
 	      , QuitFn quit_fn, IsValidFn is_valid_fn, MutateFn mutate_fn
 	      , std::size_t max_crossover_attempts)
     {
-	const bool res = island_.start(eval_fn, xover_fn, quit_fn
+	return island_.start(eval_fn, xover_fn, quit_fn
 	       , is_valid_fn, mutate_fn, max_crossover_attempts
-	       , migration_policy(topology_, .1f), merge_policy(topology_, .1f)); 
-	return res; 
+	       , migration_policy(topology_, prob_), merge_policy(topology_, prob_)); 
     }
 
     const island_type &island() const { return island_; }
