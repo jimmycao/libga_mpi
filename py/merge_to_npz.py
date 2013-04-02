@@ -3,11 +3,13 @@ import sys
 import glob
 import spea2
 
+
 def recalculate_fitnesses(data, objectives):
     ospace_sqdist = spea2._squared_distances(data[:,-(1 + objectives):-1])
     data[:,-1] = np.asarray([spea2._raw_strength_2(data[:,-(1 + objectives):-1], i)
                + spea2._density_estimator(ospace_sqdist, i)
                for i in range(len(data))])
+
 
 def merge_to_npz(input_file_pattern, objectives, out_file):
     global_data = None
@@ -21,6 +23,7 @@ def merge_to_npz(input_file_pattern, objectives, out_file):
     np.savez(out_file, genome=global_data[:, 0:-(1 + objectives)],
              ospace=global_data[:, -(1 + objectives):-1], fitnesses=global_data[:,
              -1])
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

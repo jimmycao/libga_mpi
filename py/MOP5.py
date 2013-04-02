@@ -11,7 +11,7 @@ def main():
     variables   = 2
     generations = 200
     constraints = gacommon.make_constraints_array(variables, -30, +30)
-    kursawe_fn  = lambda g: test_problems.MOP5(np.asarray(g))
+    mop5_fn  = lambda g: test_problems.MOP5(np.asarray(g))
 
     genome = [constraints[:,0] + (constraints[:,1]-constraints[:,0])
               * np.random.random(variables) for i in range(population)]
@@ -20,7 +20,7 @@ def main():
     im  = island_model.IslandModel(alg, percentage=.2)
 
     im.start(
-        kursawe_fn, lambda : alg.generation < generations
+        mop5_fn, lambda : alg.generation < generations
         , gacommon.blxa_crossover
         , lambda s: gacommon.is_within_constraints(s, constraints)
         , lambda s: gacommon.mutate_uniform(s, constraints, prob=.02)

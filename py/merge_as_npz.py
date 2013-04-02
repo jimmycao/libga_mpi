@@ -10,6 +10,7 @@ def recalculate_fitnesses(ospace, objectives):
                + spea2._density_estimator(ospace_sqdist, i)
                for i in range(len(ospace))])
 
+
 def merge_to_npz(input_file_pattern, objectives, out_file):
     global_genome = None
     global_ospace = None
@@ -27,6 +28,7 @@ def merge_to_npz(input_file_pattern, objectives, out_file):
     global_fitnesses = recalculate_fitnesses(global_ospace, objectives)
     np.savez(out_file, genome=global_genome, ospace=global_ospace
              , fitnesses=global_fitnesses)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import numpy as np
 import sys
@@ -12,6 +11,7 @@ def front(in_file, out_file):
     selected = fitnesses < 1
     np.savez(out_file, genome=genome[selected], ospace=ospace[selected]
              , fitnesses=fitnesses[selected])
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

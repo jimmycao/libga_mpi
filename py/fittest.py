@@ -2,6 +2,7 @@ import sys
 import glob
 import numpy as np
 
+
 def fittest(input_file_pattern): 
     min_fitness_vec = None
     for file in glob.glob(input_file_pattern): 
@@ -12,6 +13,7 @@ def fittest(input_file_pattern):
             if data[-1] < min_fitness_vec[-1]: 
                 min_fitness_vec = data
     return (min_fitness_vec[:-1], min_fitness_vec[-1])
+
 
 if __name__ == "__main__": 
     if len(sys.argv) != 2: 

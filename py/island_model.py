@@ -16,6 +16,7 @@ class MigrateRandom:
             for n in self._topo.neighbors: 
                 MPI.COMM_WORLD.send(genome[emmi], tag = 0, dest = n)
 
+
 class MergeRandom: 
     def __init__(self, topo, percentage): 
         self._topo = topo
@@ -36,6 +37,7 @@ class MergeRandom:
             received.append(MPI.COMM_WORLD.recv(tag = 0))
         return received
 
+
 class RingTopology: 
     def __init__(self): 
         self.size = MPI.COMM_WORLD.size
@@ -43,6 +45,7 @@ class RingTopology:
         self.neighbors = [0,0]
         self.neighbors[0] = self.rank + 1 if self.rank < self.size - 1 else 0
         self.neighbors[1] = self.rank - 1 if self.rank > 0 else self.size - 1
+
 
 class IslandModel: 
     def __init__(self, island, topology = RingTopology
