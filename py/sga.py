@@ -19,8 +19,7 @@ class SelectorBase(object):
 
 class RouletteWheelSelector(SelectorBase):
     def __init__(self, fitnesses):
-        self.likelihoods = np.cumsum(1 / fitnesses / (1
-                / fitnesses).sum())
+        self.likelihoods = np.cumsum(1 / fitnesses / (1/fitnesses).sum())
 
     def __call__(self):
         r = np.random.random()
@@ -50,8 +49,8 @@ class BinaryTournamentSelector(SelectorBase):
         self.fitnesses = fitnesses
 
     def __call__(self):
-        x = np.random.random(len(self.fitnesses))
-        y = np.random.random(len(self.fitnesses))
+        x = int(np.random.random() * len(self.fitnesses))
+        y = int(np.random.random() * len(self.fitnesses))
         return (x if self.fitnesses[x] < self.fitnesses[y] else y)
 
 def _migrate_none(genome, fitnesses): 
