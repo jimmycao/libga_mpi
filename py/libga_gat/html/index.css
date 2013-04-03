@@ -1,0 +1,78 @@
+body
+{
+    margin: 0; 
+    padding: 0;
+    background-color: #FAFAFA;
+    width: 100%;
+}
+
+.header
+{
+    font-family: "Ubuntu Light", sans-serif; 
+    font-size: 42px;
+    font-weight: 300;
+    color: #777779; 
+}
+
+.sub
+{
+    font-size: 15px;
+}
+
+.sub strong
+{
+    color: black;
+    font-family: "Ubuntu Bold", sans-serif; 
+    font-weight: 500;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+.sub > h1 
+{
+    font-size: 20px;
+}
+
+.collapsible
+{
+    border-left: 20px solid #EAEAEF;
+    padding-left: 20px; 
+    margin-bottom: 20px;
+    margin-top: 30px;
+    overflow: auto;
+}
+
+.collapsible > h1
+{
+    font-family: "Ubuntu Bold", sans-serif; 
+    font-size: 26px;
+    font-weight: 500;
+    color: #333344; 
+}
+
+.collapsible > div 
+{
+    font-family: "Ubuntu Light", sans-serif; 
+    font-weight: 300;
+    color: #777779; 
+    font-size: 15px;
+    padding-bottom: 30px; 
+}
+
+.two_columns
+{
+    width: 100%; 
+}
+
+.two_columns tr td:first-child
+{
+    padding-right: 20px;
+}
+
+.two_columns  tr td:not(:first-child) 
+{
+    width: 300px;
+    margin-left: 20px;
+    border-left: 1px solid #BABABA;
+}
+

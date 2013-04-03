@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script type="text/javascript" src="jquery.js"> </script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+         
+      }); 
+      </script>
+  </head>
+ <body
+
+   <div class="header">
+     Start definition
+   </div>
+
+   <table class="two_columns">
+    <tr><td>
+
+   <div class="collapsible">
+     <h1>How to run the examples</h1>
+     <div>
+       <div class="sub">
+	 <h1>1D</h1>
+	 <strong>rastrigin_6</strong>
+	 objectives: 1 | variables: 4 | constraints min: -5.12 | constraints max: +5.12
+	 | python module: libga_mpi/py/test_functions.py | function name: rastrigin_6
+	 <br /> <a href="libga_gat://load_example_rastrigin_6">Set parameters</a>
+	 <h1>2D</h1>
+	 <strong>kursawe</strong>
+	 objectives: 2 | variables: 4 | constraints min: -5 | constraints max: +5
+	 | python module: libga_mpi/py/test_functions.py | function name: kursawe 
+	 <br /> <a href="libga_gat://load_example_kursawe">Set parameters</a>
+	 <h1>3D</h1>
+	 <strong>MOP5</strong>
+	 objectives: 3 | variables: 2 | constraints min: -30 | constraints max: +30
+	 | python module: libga_mpi/py/test_functions.py | function name: MOP5
+	 <br /> <a href="libga_gat://load_example_MOP5">Set parameters</a>
+       </div>
+     </div>
+   </div>
+
+   <div class="collapsible">
+     
+     <h1>Parameters explained</h1>
+
+     <div>
+
+   <div class="sub">
+     <h1>Problem definition</h1>
+     <strong>Number of objectives</strong>One ore more-dimensional problems are supported. This mainly affects the algorithm to be chosen and the type of visualization. <br />
+     <strong>Number of variables</strong>Must have at least one variable.<br />
+   </div> 
+
+   <div class="sub">
+     <h1>Constraints</h1>
+     <strong>Min / Max</strong>Choose this if each variable in your problem definition has the same minimum and maximum real-valued constraint.<br />
+     <strong>From file</strong>Load a CSV file with constraint pairs for each variable. <br />
+   </div>
+
+   <div class="sub">
+     <h1>Definition</h1>
+     <strong>Python module</strong>Select a .py file which contains your problem definition. Examples are provided in the test_problems.py file.<br />
+     <strong>Function name</strong>The objective function's name (e.g. rastrigin_6, kursawe). 
+   </div>
+
+   <div class="sub">
+     <h1>View results</h1>
+     <strong>Objective on X axis</strong>[Not used yet] <br />
+     <strong>Objective on Y axis</strong>[Not used yet] <br />
+     <strong>Objective on Z axis</strong>[Not used yet] <br />
+     <strong>Filter pareto optimal front</strong>Only display the pareto optimal front and not the entire genome (default)
+   </div>
+
+   <div class="sub">
+     <h1>Algorithm settings</h1>
+     <strong>Population</strong> <br />
+     <strong>Generations</strong> <br />
+     <strong>Elite</strong> Less than population <br />
+     <strong>Archive size</strong> Less than population <br />
+     <strong>Mutation propability</strong> 0 to 99 % <br />
+     <strong>Crossover operator</strong>  <br />
+     <strong>Selection operator</strong>
+   </div>
+
+   </div>
+</div> <!-- collapsible -->
+
+      </td> <!-- end first column -->
+
+      <td valign="top">
+	<div class="atom_feed"> </div>
+      </td> <!-- end second column -->
+    </tr>
+    </table>
+
+ </body>
+</html>
