@@ -19,6 +19,8 @@ To build (make) the short and introductory PDF documentation which is more of a 
 
 For the impatient, have a look at the examples/ directory where you will find a couple of shell scripts that build and run specific test problems. This source also contains a few Python scripts to merge and visualize the algorithms' results. 
 
+Also, there is a graphical tool called Libga GAT which uses much of the functionality of Libga. It allows its user to specify test problems, choose algorithms and settings and explore the algorithm's results. See the wiki page on this site! 
+
 The MIT License (MIT)
 ---------------------
 Copyright (c) 2013 Martin Wirth
