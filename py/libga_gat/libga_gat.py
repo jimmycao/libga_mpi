@@ -6,6 +6,7 @@ import imp
 import logging
 import pickle
 import time
+from operator import itemgetter
 
 from PyQt4 import QtGui, QtCore, uic, QtWebKit
 
@@ -78,7 +79,7 @@ class LibgaGAT(QtGui.QMainWindow):
         # just an initial empty plot
         plot_layout = QtGui.QVBoxLayout()
         self.plot_1 = Fitnessplot()
-        self.plot_2 = Paretoplot2D(self.on_plot_2_picked)
+        self.plot_2 = Paretoplot2D(pick_handler = self.on_plot_2_picked)
         self.plot_3 = Paretoplot3D()
         plot_layout.addWidget(self.plot_1)
         plot_layout.addWidget(self.plot_2)
@@ -124,7 +125,7 @@ class LibgaGAT(QtGui.QMainWindow):
         self.constraints_min.setText("-5.12")
         self.constraints_max.setText("+5.12")
         self.module.setText("../test_problems.py")
-        self.function.setText("rastrigin_6")
+        self.function.setText("rastrigin_6")        
 
     def load_example_kursawe(self): 
         self.objectives.setValue(2)
@@ -134,6 +135,8 @@ class LibgaGAT(QtGui.QMainWindow):
         self.constraints_max.setText("+5")
         self.module.setText("../test_problems.py")
         self.function.setText("kursawe")
+        self.view_x_axis.setValue(0)
+        self.view_y_axis.setValue(1)
 
     def load_example_MOP5(self): 
         self.objectives.setValue(3)
@@ -143,6 +146,11 @@ class LibgaGAT(QtGui.QMainWindow):
         self.constraints_max.setText("+30")
         self.module.setText("../test_problems.py")
         self.function.setText("MOP5")
+        self.view_z_axis_check.setCheckState(QtCore.Qt.Checked)
+        self.view_z_axis.setEnabled(True)
+        self.view_x_axis.setValue(0)
+        self.view_y_axis.setValue(1)
+        self.view_z_axis.setValue(2)
         
     def on_browser_link_clicked(self, url):
         url = str(url.path())
@@ -262,9 +270,12 @@ class LibgaGAT(QtGui.QMainWindow):
             self.selection.setEnabled(False)
             self.view_frame_0.setEnabled(True)
             self.view_x_axis.setEnabled(True)
+            self.view_x_axis.setMaximum(objectives - 1)
             self.view_x_axis_label.setEnabled(True)
             self.view_y_axis.setEnabled(True)
+            self.view_y_axis.setMaximum(objectives - 1)
             self.view_y_axis_label.setEnabled(True)
+            self.view_z_axis.setMaximum(objectives - 1)
             self.view_z_axis_check.setEnabled(objectives > 2)
             self.view_z_axis.setEnabled(objectives > 2 \
                  and self.view_z_axis_check.checkState())
@@ -339,11 +350,11 @@ class LibgaGAT(QtGui.QMainWindow):
             # update info in the properties pane next
             # to the plot
             ospace = genome_info["ospace"]
-            fittest_index = min(enumerate(ospace))[0]
+            fittest_index = min(enumerate(ospace), key=itemgetter(1))[0]
             fittest = genome_info["genome"][fittest_index]
 
             self.objectives_list.setRowCount(1)
-            self.objectives_list.setItem(0,0, QtGui.QTableWidgetItem(\
+            self.objectives_list.setItem(0, 0, QtGui.QTableWidgetItem(\
                QtCore.QString("{0}".format(ospace[fittest_index]))))
             self.objectives_list.resizeColumnsToContents()
 
@@ -356,9 +367,8 @@ class LibgaGAT(QtGui.QMainWindow):
             # plot new data
             self.plot_1.data_update(genome_info)
         else:
-            plot = self.plot_2 if self.objectives.value() == 2 else self.plot_3
-            plot.filter_pareto_front = self.filter_pareto_front.checkState()
-            plot.data_update(genome_info)
+            self.used_plot.filter_pareto_front = self.filter_pareto_front.checkState()
+            self.used_plot.data_update(genome_info)
 
         # if we are done, then hide status bar and abort button
         if self.progress.value() == self.generations.value():
@@ -398,14 +408,29 @@ class LibgaGAT(QtGui.QMainWindow):
         if self.objectives.value() == 1: 
             self.plot_1.clear()
             self.show_plot_1d()
+            self.used_plot = self.plot_1
         else:
             if self.objectives.value() == 2: 
+                self.plot_2.obj1 = self.view_x_axis.value()
+                self.plot_2.obj2 = self.view_y_axis.value()
                 self.plot_2.clear()
                 self.show_plot_2d()
+                self.used_plot = self.plot_2
             else:
                 if self.objectives.value() > 2:
-                    self.plot_3.clear()
-                    self.show_plot_3d()
+                    if self.view_z_axis_check.checkState():
+                        self.plot_3.obj1 = self.view_x_axis.value()
+                        self.plot_3.obj2 = self.view_y_axis.value()
+                        self.plot_3.obj3 = self.view_z_axis.value()
+                        self.plot_3.clear()
+                        self.show_plot_3d()                        
+                        self.used_plot = self.plot_3
+                    else:
+                        self.plot_2.obj1 = self.view_x_axis.value()
+                        self.plot_2.obj2 = self.view_y_axis.value()
+                        self.plot_2.clear()
+                        self.show_plot_2d()
+                        self.used_plot = self.plot_2
 
         # a few changes in the UI for when the optimization is running
         self.tabWidget.setCurrentIndex(1)

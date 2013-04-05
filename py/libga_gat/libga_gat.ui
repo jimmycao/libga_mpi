@@ -97,9 +97,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-292</y>
+             <y>-214</y>
              <width>326</width>
-             <height>948</height>
+             <height>870</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -561,7 +561,7 @@ Max: </string>
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>100</height>
+                <height>22</height>
                </size>
               </property>
               <property name="frameShape">
@@ -574,7 +574,7 @@ Max: </string>
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>1</y>
+                 <y>0</y>
                  <width>326</width>
                  <height>30</height>
                 </rect>
@@ -598,45 +598,6 @@ Max: </string>
                </property>
                <property name="text">
                 <string>VIEW RESULTS</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_20">
-               <property name="geometry">
-                <rect>
-                 <x>30</x>
-                 <y>70</y>
-                 <width>291</width>
-                 <height>17</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Y axis: fittest objective value.</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_18">
-               <property name="geometry">
-                <rect>
-                 <x>31</x>
-                 <y>31</y>
-                 <width>281</width>
-                 <height>17</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>For one-dimensional problems a fitness-</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_19">
-               <property name="geometry">
-                <rect>
-                 <x>30</x>
-                 <y>50</y>
-                 <width>291</width>
-                 <height>17</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>plot is displayed. X axis: current generation. </string>
                </property>
               </widget>
              </widget>
@@ -1008,7 +969,7 @@ Max: </string>
                    <string/>
                   </property>
                   <property name="text">
-                   <string>Mutation probability</string>
+                   <string>Mutation probability %</string>
                   </property>
                  </widget>
                  <widget class="QSpinBox" name="mutation">
